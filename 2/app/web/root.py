@@ -6,7 +6,10 @@ import json
 from bottle import Bottle,view,static_file,redirect,request,response
 
 from app.util import fetch_url
+from app.web.util import set_username_cookie
 from app.web.diary import diary
+
+from app.biz.user import UserService
 
 static_path = 'static'
 
@@ -22,12 +25,11 @@ def get_background():
     return bg_url
 
 @root.get('/')
-@view('index')
+@view('login')
 def root_index():
-#	redirect('/static/index.html')
-#	redirect('http://'+os.environ['APP_NAME']+'.sinaapp.com/static/welcome.html')
-    bgurl = get_background()
-    return dict(background=bgurl)
+#   redirect('/static/index.html')
+#   redirect('http://'+os.environ['APP_NAME']+'.sinaapp.com/static/welcome.html')
+    return login_get()
 
 @root.get('/static/:path#.*#')
 def static_route(path):
@@ -38,10 +40,29 @@ def favicon_route():
     #return static_file('favicon.ico','static')
     return ''
 
+@root.get('/login')
+@view('login')
+def login_get():
+    bgurl = get_background()
+    redirect_url = request.GET.get('go')
+    if redirect_url == None:
+        redirect_url = '/diary/'
+    return dict(background=bgurl,redirect_url = redirect_url)
+
+
 @root.post('/login')
-def login():
-    request.forms['walpw_username']
-    redirect('/diary/')
+def login_post():
+    userService = UserService()
+    f = request.forms#.decode('utf-8')
+    username = f.get('walpw_username')
+    password = f.get('walpw_password')
+    redirect_url = f.get('go')
+    if username != None:
+        validate = userService.check_user_identity(username,password)
+        if validate :
+            set_username_cookie(username)
+            redirect(redirect_url)
+    redirect('/login')
 
 @root.get('/bing_desktop')
 def bing_desktop():

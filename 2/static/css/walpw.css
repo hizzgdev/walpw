@@ -1,0 +1,347 @@
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family:"Helvetica Neue", Helvetica, "simhei", "Microsoft YaHei UI", "Microsoft YaHei", "Arial", "Verdana", "Tahoma";
+  font-weight: bold;
+}
+
+.header {
+  padding-top:12px;
+  padding-bottom:12px;
+}
+.footer {
+  padding-top: 20px;
+  color: #777;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.login-title{color:#555;}
+.login-main{margin-top:16px;}
+.login-form{
+  padding:32px;
+  margin:-16px 0;
+  background-color:#eee;
+  border-radius:6px;
+  border:solid 1px #e0e0e0;
+  box-shadow: -4px 4px 10px #999;
+}
+
+.scene-intro{
+  width:160px;
+  padding:20px;
+  background-color:rgba(0,0,0,0.3);
+  border:solid 1px rgba(0,0,0,0.3);
+  color:#fff;
+  margin-top:30px;
+}
+
+.scene-intro p{
+  font-size:14px;
+}
+
+@media (max-width:768px){
+  .login-main{
+    background-image:none;
+  }
+  .login-form{
+    background-color:#eee;
+    border-radius:6px;
+    border:solid 1px #e0e0e0;
+    box-shadow: none;
+  }
+}
+@media (min-width:768px){
+  .login-main{
+    background-color:#f3f3f3;
+  }
+}
+
+.pager li.active a{
+    background-color:#428bca;
+    border-color:#428bca;
+    color:#fff;
+}
+
+.header-diarybook{padding:30px 0 0 0;}
+.header-diarybook h2{margin-top:10px;}
+.header-diarybook .nav{margin-top:30px; text-align:right;}
+.header-diarybook .username{margin-right:8px; white-space:nowrap; float:left;}
+.header-diarybook .boy{color:#317eac;}
+.header-diarybook .girl{color:#ff7518;}
+
+.timeline{
+    margin: 30px 0 0 0;
+    padding: 0;
+    list-style:none;
+    position:relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    xbackground: #afdcf8;
+    background: #ddd;
+    left: 25%;
+    margin-left: -10px;
+}
+
+.timeline > li{
+    position:relative;
+}
+
+.timeline > li .info{
+    display:block;
+    width:30%;
+    padding-right:100px;
+    position:absolute;
+}
+
+.timeline > li .info span{
+    display:block;
+    text-align:right;
+}
+
+.timeline > li .info span.date{
+    font-size: 1.8em;
+    color:#3594cb;
+}
+
+.timeline > li .info span.time{
+    font-size: 1.6em;
+    color:#bdd0db;
+}
+
+.timeline > li .info span.author{
+    font-size: 1.6em;
+    color:#bdd0db;
+    xcolor:#3594cb;
+}
+
+.timeline > li .info span.end{
+    font-size: 1.6em;
+    padding:0.4em 0;
+    color:#999;
+}
+
+.timeline > li .content{
+    margin: 0 0 15px 30%;
+    padding: 2em;
+    font-size: 1.2em;
+    font-weight: 1.4;
+    position: relative;
+    border-radius: 5px;
+    background: #3594cb;
+}
+
+.timeline > li .content h2{
+    margin-top: 0px;
+    padding: 0 0 10px 0;
+    sborder-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.timeline > li .content:after {
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #3594cb;
+    border-width: 10px;
+    top: 10px;
+}
+
+.timeline > li.boy .content{
+    background:#f4f8fa;
+    border:solid 2px #bce8f1;
+    color:#34789a;
+}
+.timeline > li.boy .content:after {
+    border-right-color: #bce8f1;
+}
+.timeline > li.boy .content h2{
+    border-bottom: 1px solid #bce8f1;
+}
+.timeline > li.girl .content{
+    background:#fdf7f7;
+    border:solid 2px #eed3d7;
+    color:#cc4a48;
+}
+.timeline > li.girl .content:after {
+    border-right-color: #eed3d7;
+}
+.timeline > li.girl .content h2{
+    border-bottom: 1px solid #eed3d7;
+}
+.timeline > li .point{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-smoothing: antialiased;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 0 8px #ddd;/*#afdcf8;*/
+    text-align: center;
+    left: 25%;
+    top: 0;
+    margin: 0 0 0 -25px;
+    background-color: #fff;
+}
+
+.timeline > li .end-p{
+    width:30px;
+    height:30px;
+    line-height:30px;
+    margin:8px 0 0 -20px;
+    background-color:#ddd;
+}
+
+.timeline > li .end-r{
+    margin: 0 0 40px 30%;
+    padding: 0.6em;
+    font-size: 1.2em;
+    font-weight: 1.4;
+    position: relative;
+    border-radius: 5px;
+    background: #eee;
+}
+
+@media screen and (max-width: 65.375em) {
+    .timeline > li .info span.date{
+        font-size:1.5em;
+    }
+    .timeline > li .info span.time{
+        font-size:1.2em;
+    }
+    .timeline > li .info span.author{
+        font-size:1.2em;
+    }
+    .timeline > li .info span.end{
+    }
+}
+@media screen and (max-width: 47.2em) {
+    .header-diarybook{
+        padding:13px 0 0 0;
+    }
+    .header-diarybook .username{
+        float:none;
+        text-align:center;
+        display:block;
+        margin-bottom:5px;
+    }
+
+    .header-diarybook .nav{
+        margin-top:12px;
+        text-align:center;
+    }
+
+    .timeline:before {
+        display:none;
+    }
+
+    .timeline > li .info{
+        width: 100%;
+        position: relative;
+        padding: 0 0 20px 0;
+    }
+
+    .timeline > li .info span{
+        text-align:left;
+    }
+
+    .timeline > li .info span.date{
+        float:left;
+        margin-right:5px;
+    }
+
+    .timeline > li .info span.time{
+        float:left;
+        font-size:1.5em;
+        margin-right:10px;
+    }
+
+    .timeline > li .info span.author{
+        float:left;
+        font-size:1.5em;
+        white-space:nowrap;
+    }
+
+    .timeline > li .info span.end{
+        text-align:center;
+        font-size:1.5em;
+        padding:0;
+    }
+
+    .timeline > li .content{
+        margin: 0 0 30px 0;
+        padding: 1em;
+        font-weight: 400;
+        font-size: 95%;
+    }
+
+    .timeline > li .content:after{
+        right: auto;
+        left: 20px;
+        top: -20px;
+    }
+
+    .timeline > li.boy .content:after{
+        border-right-color: transparent;
+        border-bottom-color: #bce8f1;
+    }
+
+    .timeline > li.girl .content:after{
+        border-right-color: transparent;
+        border-bottom-color: #eed3d7;
+    }
+
+    .timeline > li .end-r{
+        margin: 30px 0 20px 0;
+    }
+
+    .timeline > li .point{
+        position: relative;
+        z-index:2;
+        float: right;
+        left: auto;
+        margin: 8px 12px 0 0;
+        box-shadow: 0 0 0 1px #ddd;/*#afdcf8;*/
+    }
+
+    .timeline > li .end-p{
+        display:none;
+    }
+}
+@media screen and (max-width: 30em){
+    .timeline{
+        margin-top:62px;
+    }
+
+    .header-diarybook{
+        padding:6px 0;
+        border-bottom:solid 2px #ccc;
+        margin:0 -15px;
+        background-color:#eee;
+        position:fixed;
+        left:0;
+        right:0;
+        z-index:1030;
+    }
+    .header-diarybook h2{
+        display:none;
+    }
+
+    .header-diarybook .nav{
+        margin:0;
+    }
+
+    .header-diarybook .pager{
+        margin:0;
+    }
+}
