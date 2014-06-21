@@ -108,19 +108,40 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .timeline > li .info span.date{
     font-size: 1.8em;
-    color:#3594cb;
 }
 
-.timeline > li .info span.time{
+.timeline > li .info span.weather{
     font-size: 1.6em;
-    color:#bdd0db;
 }
 
 .timeline > li .info span.author{
     font-size: 1.6em;
-    color:#bdd0db;
-    xcolor:#3594cb;
 }
+
+.timeline > li.boy .info span.date{
+    color:#3594cb;
+}
+
+.timeline > li.boy .info span.weather{
+    color:#bdd0db;
+}
+
+.timeline > li.boy .info span.author{
+    color:#bdd0db;
+}
+
+.timeline > li.girl .info span.date{
+    color:#cc4a48;
+}
+
+.timeline > li.girl .info span.weather{
+    color:#eed3d7;
+}
+
+.timeline > li.girl .info span.author{
+    color:#eed3d7;
+}
+
 
 .timeline > li .info span.end{
     font-size: 1.6em;
@@ -180,9 +201,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-bottom: 1px solid #eed3d7;
 }
 .timeline > li .point{
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
     font-smoothing: antialiased;
     position: absolute;
     border-radius: 50%;
@@ -190,7 +211,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     text-align: center;
     left: 25%;
     top: 0;
-    margin: 0 0 0 -25px;
+    margin: 10px 0 0 -15px;
     background-color: #fff;
 }
 
@@ -216,7 +237,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     .timeline > li .info span.date{
         font-size:1.5em;
     }
-    .timeline > li .info span.time{
+    .timeline > li .info span.weather{
         font-size:1.2em;
     }
     .timeline > li .info span.author{
@@ -260,7 +281,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         margin-right:5px;
     }
 
-    .timeline > li .info span.time{
+    .timeline > li .info span.weather{
         float:left;
         font-size:1.5em;
         margin-right:10px;
@@ -306,12 +327,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     .timeline > li .point{
-        position: relative;
-        z-index:2;
-        float: right;
-        left: auto;
-        margin: 8px 12px 0 0;
-        box-shadow: 0 0 0 1px #ddd;/*#afdcf8;*/
+        display:none;
     }
 
     .timeline > li .end-p{

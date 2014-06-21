@@ -18,9 +18,16 @@ def root_index():
     username = get_username_cookie()
     if username == None:
         redirect('/login')
-    #userinfo = us.get_user_info(username)
-    #diarys = ds.get_recent_diarys(username, 12)
-    #return dict(userinfo=userinfo,diarys=diarys)
+    userinfo = us.get_user_info(username)
+    if userinfo['FUSex']:
+        boy = userinfo['FUName']
+        girl = userinfo['FULover']
+    else:
+        boy = userinfo['FULover']
+        girl = userinfo['FUName']
 
-    return dict(userinfo=None,diarys=[])
+    diarys = ds.get_recent_diarys(username, 10000)
+    return dict(userinfo=userinfo,boy=boy,girl=girl,diarys=diarys)
+
+    #return dict(userinfo=None,diarys=[])
 

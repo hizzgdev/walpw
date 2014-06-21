@@ -120,7 +120,7 @@ class UserService(object):
 
 
 #used
-    def get_userinfo(self, username):
+    def get_user_info(self, username):
         userinfo = None
         if username != None and len(username) > 0:
             userinfos = self.uda.get_user_info(username)

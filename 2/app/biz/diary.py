@@ -54,7 +54,7 @@ class DiaryService(object):
         self.dda.comment_count_add(diaryid, -1)
 
     def get_recent_diarys(self, username, limit):
-        since = datetime.datetime.now() - datetime.timedelta(days=3000)
+        since = datetime.datetime.now() - datetime.timedelta(days=30000)
         return self.dda.get_diarys_by_user_since_date(username, since, limit);
 
     def get_diary_by_id_xml(self, username, diaryid):
