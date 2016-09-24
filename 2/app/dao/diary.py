@@ -9,6 +9,14 @@ class DiaryDao(DbProvider):
     def __init__(self):
         DbProvider.__init__(self)
 
+    def get_users(self):
+        rows = self.query('select FUName as girl, FULover as boy, FUPassword as password, FUNickName as diaryId from T_User_M where EXISTS (select 1 from T_Document where FDTags = FUNickName) and FUSex = 2 limit 1000')
+        return rows
+
+    def get_user_diarys(self, diaryId):
+        sql = 'select FDID,FDUName,FDTitle,FDContent,DATE_FORMAT(FDTime, %s) as FDTime1,FDIP,DATE_FORMAT(FDEditTime,%s) as FDEditTime1,FDWeather from T_Document where FDTags = %s limit 1000'
+        return self.query(sql, ('%Y-%m-%d %H:%i:%s', '%Y-%m-%d %H:%i:%s', diaryId))
+
     def get_diary_by_id(self, diaryid):
         condition = 'FDID=%s'
         param = (diaryid)

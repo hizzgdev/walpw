@@ -1,8 +1,8 @@
-#! /usr/bin/env python2.7
+#! /usr/bin/env python
 # -*- coding=utf-8 -*-
 
 import sys
-sys.path.append('/home/zzg/dev/walpw.sae/2/sae')
+sys.path.append('/home/zzg/projects/walpw.sae/2/sae')
 from bottle import debug,run,request,response,redirect,static_file
 from app.web.root import root
 

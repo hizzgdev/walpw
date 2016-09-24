@@ -17,9 +17,7 @@
     <div class="header-diarybook">
         <h2><span class="username boy">@{{boy}}</span><span class="username girl">@{{girl}}</span><div class="clearfix"></div></h2>
         <ul class="nav pager">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-th-list"></span> 读日记</a></li>
-            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-edit"></span> 写日记</a></li>
-            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
+            <li class="active"><a href="/logout"><span class="glyphicon glyphicon-th-list"></span>退出</a></li>
         </ul>
     </div>
     <ul class="timeline">
@@ -31,7 +29,7 @@
         %end
         <li class="{{clsname}}">
             <div class="info">
-                <time datetime="{{diary['FDEditTime']}}"><span class="date">{{diary['FDTime'].strftime('%Y-%m-%d')}}</span><span class="weather">{{diary['FDWeather'] or ''}}</span></time>
+                <time datetime="{{diary['FDEditTime1']}}"><span class="date">{{diary['FDTime1'][0:10]}}</span><span class="weather">{{diary['FDWeather'] or ''}}</span></time>
                 <span class="author">{{diary['FDUName']}}</span><div class="clearfix"></div>
             </div>
             <div class="point"></div>

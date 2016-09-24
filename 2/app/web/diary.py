@@ -1,33 +1,49 @@
 #! /usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import os
+import json
+import datetime
 from bottle import Bottle,view,static_file,redirect
+from sae.storage import Bucket
 
-from app.web.util import get_username_cookie
-from app.biz.user import UserService
-from app.biz.diary import DiaryService
+import app.web.util as webtools
 
 diary = Bottle()
+
+diary_bucket = Bucket('diary')
 
 @diary.get('/')
 @view('diary_list')
 def root_index():
-    ds = DiaryService()
-    us = UserService()
-    username = get_username_cookie()
+    username = webtools.get_username_cookie()
     if username == None:
         redirect('/login')
-    userinfo = us.get_user_info(username)
-    if userinfo['FUSex']:
-        boy = userinfo['FUName']
-        girl = userinfo['FULover']
-    else:
-        boy = userinfo['FULover']
-        girl = userinfo['FUName']
+    userinfo = get_user_info(username)
+    if userinfo == None:
+        redirect('/login')
 
-    diarys = ds.get_recent_diarys(username, 10000)
-    return dict(userinfo=userinfo,boy=boy,girl=girl,diarys=diarys)
+    boy = userinfo['boy']
+    girl = userinfo['girl']
+    diarys = get_diarys_list(userinfo['diaryId'])
+    return dict(boy=boy,girl=girl,diarys=diarys)
 
-    #return dict(userinfo=None,diarys=[])
+def get_user_info(username):
+    obj_id = '/user/{0}.dat'.format(username)
+    try:
+        content = diary_bucket.get_object_contents(obj_id)
+        if content != None:
+            return json.loads(content)
+    except:
+        pass
+    return None
+
+def get_diary_list(diary_id):
+    obj_id = '/diary/{0}.dat'.format(diary_id)
+    try:
+        content = diary_bucket.get_object_contents(obj_id)
+        if content != None:
+            return json.loads(content)
+    except:
+        pass
+    return None
 

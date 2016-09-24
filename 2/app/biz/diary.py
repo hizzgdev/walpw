@@ -2,59 +2,36 @@
 # -*- coding:utf-8 -*-
 
 import uuid
+import json
 import datetime
-#from app.lib.relativedelta import relativedelta
+from sae.storage import Bucket
 from app.dao.diary import DiaryDao
+
 class DiaryService(object):
 
     def __init__(self):
         self.dda = DiaryDao()
+        self.diary_bucket = Bucket('diary')
 
-    def save_diary(self, username, diary):
-        nowtime = datetime.datetime.now()
-        userInfoService = UserInfoService()
-        diary['edittime'] = nowtime
-        diary['mosttop'] = 0
-        if diary['id'] == None or len(diary['id']) == 0 :
-            uid = uuid.uuid5(uuid.NAMESPACE_DNS,uuid.uuid1().get_hex()).get_urn()
-            uid = uid[9:]
-            diary['id'] = uid
-            diary['username'] = username
-            diary['lover'] = userInfoService.get_lover_name(username)
-            self.dda.add_diary(diary)
-        else :
-            is_diary_owner = self.is_diary_owner(diary['id'],username)
-            if not is_diary_owner:
-                return '-1'
-            append_content = '\r\n[以上内容由{0}修改于{1:%Y年%m月%d日 %H:%M:%S}]'.format(username,nowtime)
-            diary['content'] = diary['content']+append_content
-            self.dda.update_diary(diary)
-        return 0
+    def dump_users(self):
+        users = self.dda.get_users()
+        if(users != None):
+            for u in users:
+#                obj_id = '/user/{0}.dat'.format(u['girl'])
+#                obj_data = {'password': u['password'], 'diaryId': u['diaryId'], 'boy': u['boy'], 'girl': u['girl']}
+#                self.diary_bucket.put_object(obj_id, json.dumps(obj_data), content_type='application/json', content_encoding='utf-8')
 
-    def append_diary(self, diaryid, username, content):
-        is_diary_owner = self.is_diary_owner(diaryid,username)
-        if not is_diary_owner:
-            return '-1'
-        nowtime = datetime.datetime.now()
-        append_content = '\r\n[以上内容由{0}修改于{1:%Y年%m月%d日 %H:%M:%S}]'.format(username,nowtime)
-        self.dda.append_diary(diaryid, '\r\n'+content+append_content)
-        return '0'
-
-    def delete_diary(self, diaryid, username):
-        is_diary_owner = self.is_diary_owner(diaryid,username)
-        if not is_diary_owner:
-            return '-1'
-        self.dda.delete_diary(diaryid)
-        return '0'
-
-    def comment_count_up(self, diaryid):
-        self.dda.comment_count_add(diaryid, 1)
-    
-    def comment_count_down(self, diaryid):
-        self.dda.comment_count_add(diaryid, -1)
+                diarys = self.dda.get_user_diarys(u['diaryId'])
+                obj_d_id = '/diary/{0}.dat'.format(u['diaryId'])
+                self.diary_bucket.put_object(obj_d_id, json.dumps(diarys), content_type='application/json', content_encoding='utf-8')
+        else:
+            pass
 
     def get_recent_diarys(self, username, limit):
-        since = datetime.datetime.now() - datetime.timedelta(days=30000)
+        obj_id = '/user/{0}.dat'.format(username)
+        user = self.diary_bucket.get_object_contents(obj_id)
+
+        obj_id = '/diary/{0}.dat'.format(u['diaryId'])
         return self.dda.get_diarys_by_user_since_date(username, since, limit);
 
     def get_diary_by_id_xml(self, username, diaryid):

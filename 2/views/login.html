@@ -28,11 +28,6 @@
     <div class="container">
         <div class="row">
             <div class="hidden-xs col-sm-7 col-md-8">
-                <!--
-                <div class="scene-intro">
-                    <p class="text-center">我住长江头，<br/>君住长江尾，<br/>日日思君不见君，<br/>共饮长江水。</p>
-                </div>
-                -->
             </div>
             <div class="col-xs-12 col-sm-5 col-md-4">
                 <form class="login-form" role="form" action="/login" method="post">
@@ -45,14 +40,10 @@
                         <input type="password" class="form-control" name="walpw_password" id="walpw_password" placeholder="密码" required>
                     </div>
                     <div class="form-group">
-                        <label class="checkbox">
-                            <input type="checkbox" value="remember-me"> 下次自动登录 
-                        </label>
                         <button class="btn btn-primary btn-block" type="submit">登录</button>
                     </div>
                     <input type="hidden" name="go" value="{{redirect_url}}" />
-                    <a href="">新用户注册</a>
-                    <a class="text-right text-warning" href="#">忘记密码</a>
+                    <a class="text-right text-warning" href="#">暂停注册新用户</a>
                 </form>
             </div>
         </div>
@@ -60,6 +51,8 @@
 </div>
 <div class="container">
     <div class="footer">
+        <p>由于业务调整，本站不再提供服务，写过日记的同学可以登录备份自己的数据。</p>
+        <p>忘记密码请联系 hiwalpw@163.com。</p>
         <p>&copy;2014 walpw.cn</p>
     </div>
 </div>
